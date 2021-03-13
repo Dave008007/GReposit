@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="5f1e4785-8ae6-484b-a13b-d3665aeb31dc" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="github_egFlow" doc:id="323fcadb-0e4e-4df7-9494-285e66758362" >
+		<http:listener doc:name="Listener" doc:id="4fec572e-80b0-458a-8259-2dbe933e6137" config-ref="HTTP_Listener_config" path="/testRepository"/>
+		<set-payload value="MyFirstRepositorycommit" doc:name="Set Payload" doc:id="b0f8307c-d1aa-4572-9a8f-fe2db2b93e08" />
+		<logger level="INFO" doc:name="Logger" doc:id="f5dc50fa-3012-4ad5-b610-24bd722b1854" message="#[payload]"/>
+	</flow>
+</mule>
